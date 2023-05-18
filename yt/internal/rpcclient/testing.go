@@ -3,8 +3,8 @@ package rpcclient
 import (
 	"context"
 
+	"github.com/go-faster/yt/bus"
 	"github.com/golang/protobuf/proto"
-	"go.ytsaurus.tech/yt/go/bus"
 )
 
 type BusConn interface {

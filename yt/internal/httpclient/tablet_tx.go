@@ -3,9 +3,9 @@ package httpclient
 import (
 	"context"
 
-	"go.ytsaurus.tech/yt/go/yson"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yt/internal"
+	"github.com/go-faster/yt/yson"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yt/internal"
 )
 
 type tabletTx struct {

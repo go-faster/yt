@@ -3,10 +3,10 @@ package rpcclient
 import (
 	"context"
 
+	"github.com/go-faster/yt/bus"
 	"github.com/golang/protobuf/proto"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/ctxlog"
-	"go.ytsaurus.tech/yt/go/bus"
 )
 
 type LoggingInterceptor struct {

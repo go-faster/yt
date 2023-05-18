@@ -1,8 +1,8 @@
 package yt
 
 import (
-	"go.ytsaurus.tech/yt/go/guid"
-	"go.ytsaurus.tech/yt/go/ypath"
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/ypath"
 )
 
 type (

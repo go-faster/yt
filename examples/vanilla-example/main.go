@@ -7,11 +7,11 @@ import (
 	"os/exec"
 	"time"
 
+	"github.com/go-faster/yt/mapreduce"
+	"github.com/go-faster/yt/mapreduce/spec"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yt/ythttp"
 	"go.ytsaurus.tech/library/go/core/xerrors"
-	"go.ytsaurus.tech/yt/go/mapreduce"
-	"go.ytsaurus.tech/yt/go/mapreduce/spec"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yt/ythttp"
 )
 
 const cluster = "freud"

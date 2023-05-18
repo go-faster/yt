@@ -9,10 +9,10 @@ import (
 	"net"
 	"sync"
 
+	"github.com/go-faster/yt/crc64"
+	"github.com/go-faster/yt/guid"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/nop"
-	"go.ytsaurus.tech/yt/go/crc64"
-	"go.ytsaurus.tech/yt/go/guid"
 )
 
 type AttributeKey string
@@ -27,8 +27,10 @@ type Options struct {
 	Logger  log.Logger
 }
 
-type packetType int16
-type packetFlags int16
+type (
+	packetType  int16
+	packetFlags int16
+)
 
 const (
 	packetMessage = packetType(0)

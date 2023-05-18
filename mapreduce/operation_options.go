@@ -7,10 +7,10 @@ import (
 	"os"
 	"path/filepath"
 
-	"go.ytsaurus.tech/yt/go/guid"
-	"go.ytsaurus.tech/yt/go/mapreduce/spec"
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yt"
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/mapreduce/spec"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yt"
 )
 
 type OperationOption interface {
@@ -66,7 +66,7 @@ func (l *localFilesOption) uploadLocalFiles(ctx context.Context, p *prepare) (er
 		p.spec.VisitUserScripts(func(script *spec.UserScript) {
 			script.FilePaths = append(script.FilePaths, spec.File{
 				CypressPath: tmpPath,
-				Executable:  st.Mode()&0100 != 0,
+				Executable:  st.Mode()&0o100 != 0,
 				FileName:    filepath.Base(filename),
 			})
 		})
@@ -82,8 +82,7 @@ func WithLocalFiles(paths []string) OperationOption {
 	return &localFilesOption{paths: paths}
 }
 
-type skipSelfUploadOption struct {
-}
+type skipSelfUploadOption struct{}
 
 func (l *skipSelfUploadOption) isOperationOption() {}
 

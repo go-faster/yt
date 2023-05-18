@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"go.ytsaurus.tech/yt/go/yt"
+	"github.com/go-faster/yt/yt"
 )
 
 // NewTestHTTPClient creates new http client from config to be used in integration tests.

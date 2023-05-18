@@ -4,8 +4,8 @@ import (
 	"encoding"
 	"reflect"
 
-	"go.ytsaurus.tech/yt/go/schema"
-	"go.ytsaurus.tech/yt/go/yson"
+	"github.com/go-faster/yt/schema"
+	"github.com/go-faster/yt/yson"
 	"golang.org/x/xerrors"
 )
 

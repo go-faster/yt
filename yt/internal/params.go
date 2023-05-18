@@ -4,10 +4,10 @@ package internal
 
 import (
 	"go.ytsaurus.tech/library/go/core/log"
-	"go.ytsaurus.tech/yt/go/guid"
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yson"
-	"go.ytsaurus.tech/yt/go/yt"
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yson"
+	"github.com/go-faster/yt/yt"
 )
 
 func writeTransactionOptions(w *yson.Writer, o *yt.TransactionOptions) {

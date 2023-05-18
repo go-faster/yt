@@ -9,7 +9,7 @@ import (
 	"io"
 	"reflect"
 
-	"go.ytsaurus.tech/yt/go/yson"
+	"github.com/go-faster/yt/yson"
 	"golang.org/x/xerrors"
 )
 

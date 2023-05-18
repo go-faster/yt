@@ -5,11 +5,11 @@ import (
 	"context"
 	"io"
 
-	"go.ytsaurus.tech/yt/go/guid"
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yson"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yterrors"
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yson"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yterrors"
 )
 
 // Encoder is adapter between typed and untyped layer of API.

@@ -1,8 +1,8 @@
 package rpcclient
 
 import (
+	"github.com/go-faster/yt/yt"
 	"go.ytsaurus.tech/library/go/core/xerrors"
-	"go.ytsaurus.tech/yt/go/yt"
 )
 
 type ObjectType int32

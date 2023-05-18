@@ -3,7 +3,7 @@ package mapreduce
 import (
 	"context"
 
-	"go.ytsaurus.tech/yt/go/yt"
+	"github.com/go-faster/yt/yt"
 )
 
 type Option interface {

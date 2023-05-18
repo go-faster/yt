@@ -3,8 +3,8 @@ package yt
 import (
 	"context"
 
-	"go.ytsaurus.tech/yt/go/schema"
-	"go.ytsaurus.tech/yt/go/ypath"
+	"github.com/go-faster/yt/schema"
+	"github.com/go-faster/yt/ypath"
 )
 
 // TableWriter is interface for writing stream of rows.

@@ -3,10 +3,10 @@ package mapreduce
 import (
 	"context"
 
-	"go.ytsaurus.tech/yt/go/guid"
-	"go.ytsaurus.tech/yt/go/schema"
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yt"
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/schema"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yt"
 )
 
 // StderrTableRow is a single row of operation stderr table.

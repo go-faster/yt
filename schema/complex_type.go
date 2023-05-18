@@ -3,7 +3,7 @@ package schema
 import (
 	"fmt"
 
-	"go.ytsaurus.tech/yt/go/yson"
+	"github.com/go-faster/yt/yson"
 )
 
 type ComplexType interface {

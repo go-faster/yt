@@ -5,14 +5,12 @@ import (
 	"context"
 	"errors"
 
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yson"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yson"
 	"golang.org/x/xerrors"
 )
 
-var (
-	defaultBatchSize = 512 * 1024 * 1024
-)
+var defaultBatchSize = 512 * 1024 * 1024
 
 // WithBatchSize sets batch size (in bytes) for WriteTable.
 func WithBatchSize(batchSize int) WriteTableOption {

@@ -8,16 +8,16 @@ import (
 	"time"
 
 	"github.com/cenkalti/backoff/v4"
+	"github.com/go-faster/yt/bus"
+	"github.com/go-faster/yt/proto/client/api/rpc_proxy"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yt/internal"
 	"github.com/golang/protobuf/proto"
 	"github.com/opentracing/opentracing-go"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/ctxlog"
 	"go.ytsaurus.tech/library/go/core/xerrors"
-	"go.ytsaurus.tech/yt/go/bus"
-	"go.ytsaurus.tech/yt/go/proto/client/api/rpc_proxy"
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yt/internal"
 )
 
 var _ yt.Client = (*client)(nil)

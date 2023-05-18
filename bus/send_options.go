@@ -3,13 +3,13 @@ package bus
 import (
 	"time"
 
+	"github.com/go-faster/yt/compression"
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/proto/core/misc"
+	"github.com/go-faster/yt/proto/core/rpc"
+	"github.com/go-faster/yt/proto/core/tracing"
 	"github.com/golang/protobuf/proto"
 	"go.ytsaurus.tech/library/go/ptr"
-	"go.ytsaurus.tech/yt/go/compression"
-	"go.ytsaurus.tech/yt/go/guid"
-	"go.ytsaurus.tech/yt/go/proto/core/misc"
-	"go.ytsaurus.tech/yt/go/proto/core/rpc"
-	"go.ytsaurus.tech/yt/go/proto/core/tracing"
 )
 
 type SendOption interface {

@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/go-faster/yt/bus"
+	"github.com/go-faster/yt/yterrors"
 	"github.com/golang/protobuf/proto"
-	"go.ytsaurus.tech/yt/go/bus"
-	"go.ytsaurus.tech/yt/go/yterrors"
 )
 
 type ErrorWrapper struct{}

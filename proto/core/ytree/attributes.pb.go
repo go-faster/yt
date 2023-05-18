@@ -11,7 +11,7 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
-	_ "go.ytsaurus.tech/yt/go/proto/core/yson"
+	_ "github.com/go-faster/yt/proto/core/yson"
 )
 
 const (

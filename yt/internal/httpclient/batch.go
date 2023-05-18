@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"fmt"
 
+	"github.com/go-faster/yt/yt"
 	"go.ytsaurus.tech/library/go/blockcodecs"
-	"go.ytsaurus.tech/yt/go/yt"
 )
 
 type rowBatch struct {

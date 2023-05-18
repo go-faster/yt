@@ -7,9 +7,9 @@ import (
 	"testing"
 
 	"github.com/cenkalti/backoff/v4"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yt"
 	"github.com/stretchr/testify/assert"
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yt"
 	"golang.org/x/xerrors"
 )
 

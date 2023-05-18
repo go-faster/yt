@@ -4,7 +4,7 @@ import (
 	"io"
 	"reflect"
 
-	"go.ytsaurus.tech/yt/go/yson"
+	"github.com/go-faster/yt/yson"
 )
 
 // Reader represents input of the job.

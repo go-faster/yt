@@ -6,13 +6,11 @@ import (
 	"fmt"
 	"os"
 
-	"go.ytsaurus.tech/yt/go/bus"
-	"go.ytsaurus.tech/yt/go/proto/client/api/rpc_proxy"
+	"github.com/go-faster/yt/bus"
+	"github.com/go-faster/yt/proto/client/api/rpc_proxy"
 )
 
-var (
-	flagAddress = flag.String("address", "man2-4299-b52.hume.yt.gencfg-c.yandex.net:9013", "Address of YT rpc proxy")
-)
+var flagAddress = flag.String("address", "man2-4299-b52.hume.yt.gencfg-c.yandex.net:9013", "Address of YT rpc proxy")
 
 func testBus() error {
 	ctx := context.Background()

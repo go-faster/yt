@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"os"
 
-	"go.ytsaurus.tech/yt/go/guid"
-	"go.ytsaurus.tech/yt/go/mapreduce"
-	"go.ytsaurus.tech/yt/go/mapreduce/spec"
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yt/ythttp"
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/mapreduce"
+	"github.com/go-faster/yt/mapreduce/spec"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yt/ythttp"
 )
 
 func init() {

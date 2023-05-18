@@ -10,13 +10,13 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/go-faster/yt/bus"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yt/internal"
+	"github.com/go-faster/yt/yterrors"
 	"github.com/golang/protobuf/proto"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/xerrors"
-	"go.ytsaurus.tech/yt/go/bus"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yt/internal"
-	"go.ytsaurus.tech/yt/go/yterrors"
 )
 
 const ProtocolVersionMajor = 1

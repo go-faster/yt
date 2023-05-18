@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"io"
 
-	"go.ytsaurus.tech/yt/go/mapreduce/spec"
-	"go.ytsaurus.tech/yt/go/yt"
+	"github.com/go-faster/yt/mapreduce/spec"
+	"github.com/go-faster/yt/yt"
 	"golang.org/x/xerrors"
 )
 

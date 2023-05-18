@@ -16,9 +16,9 @@ func emit(f file, out io.Writer) error {
 	write("package internal")
 
 	write("import (")
-	write("%q", "go.ytsaurus.tech/yt/go/yson")
-	write("%q", "go.ytsaurus.tech/yt/go/ypath")
-	write("%q", "go.ytsaurus.tech/yt/go/yt")
+	write("%q", "github.com/go-faster/yt/yson")
+	write("%q", "github.com/go-faster/yt/ypath")
+	write("%q", "github.com/go-faster/yt/yt")
 	write("%q", "go.ytsaurus.tech/library/go/core/log")
 	write(")")
 

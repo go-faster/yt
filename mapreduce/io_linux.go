@@ -8,8 +8,8 @@ import (
 	"os"
 	"syscall"
 
-	"go.ytsaurus.tech/yt/go/skiff"
-	"go.ytsaurus.tech/yt/go/yson"
+	"github.com/go-faster/yt/skiff"
+	"github.com/go-faster/yt/yson"
 	"golang.org/x/xerrors"
 )
 

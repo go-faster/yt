@@ -11,11 +11,11 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
-	chaos_client "go.ytsaurus.tech/yt/go/proto/client/chaos_client"
-	chunk_client "go.ytsaurus.tech/yt/go/proto/client/chunk_client"
-	hive "go.ytsaurus.tech/yt/go/proto/client/hive"
-	misc "go.ytsaurus.tech/yt/go/proto/core/misc"
-	ytree "go.ytsaurus.tech/yt/go/proto/core/ytree"
+	chaos_client "github.com/go-faster/yt/proto/client/chaos_client"
+	chunk_client "github.com/go-faster/yt/proto/client/chunk_client"
+	hive "github.com/go-faster/yt/proto/client/hive"
+	misc "github.com/go-faster/yt/proto/core/misc"
+	ytree "github.com/go-faster/yt/proto/core/ytree"
 )
 
 const (

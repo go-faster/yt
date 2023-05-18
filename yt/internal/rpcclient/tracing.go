@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/go-faster/yt/bus"
 	"github.com/golang/protobuf/proto"
 	"github.com/opentracing/opentracing-go"
 	"github.com/opentracing/opentracing-go/ext"
-	"go.ytsaurus.tech/yt/go/bus"
 )
 
 type TracingInterceptor struct {

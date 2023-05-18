@@ -3,9 +3,9 @@ package schema
 import (
 	"testing"
 
+	"github.com/go-faster/yt/yson"
 	"github.com/stretchr/testify/require"
 	"go.ytsaurus.tech/library/go/ptr"
-	"go.ytsaurus.tech/yt/go/yson"
 )
 
 func TestSchemaMarshalYSON(t *testing.T) {

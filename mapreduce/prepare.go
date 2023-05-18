@@ -8,13 +8,13 @@ import (
 	"strconv"
 
 	"github.com/cenkalti/backoff/v4"
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/mapreduce/spec"
+	"github.com/go-faster/yt/schema"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yterrors"
 	"github.com/google/tink/go/keyset"
-	"go.ytsaurus.tech/yt/go/guid"
-	"go.ytsaurus.tech/yt/go/mapreduce/spec"
-	"go.ytsaurus.tech/yt/go/schema"
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yterrors"
 	"golang.org/x/xerrors"
 )
 

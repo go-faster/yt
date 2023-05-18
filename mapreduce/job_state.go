@@ -1,6 +1,6 @@
 package mapreduce
 
-import "go.ytsaurus.tech/yt/go/skiff"
+import "github.com/go-faster/yt/skiff"
 
 // jobState is transferred from the client to the job.
 //

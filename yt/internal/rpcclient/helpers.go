@@ -5,14 +5,14 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/proto/client/api/rpc_proxy"
+	"github.com/go-faster/yt/proto/core/misc"
+	"github.com/go-faster/yt/proto/core/ytree"
+	"github.com/go-faster/yt/yson"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yterrors"
 	"go.ytsaurus.tech/library/go/ptr"
-	"go.ytsaurus.tech/yt/go/guid"
-	"go.ytsaurus.tech/yt/go/proto/client/api/rpc_proxy"
-	"go.ytsaurus.tech/yt/go/proto/core/misc"
-	"go.ytsaurus.tech/yt/go/proto/core/ytree"
-	"go.ytsaurus.tech/yt/go/yson"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yterrors"
 	"golang.org/x/xerrors"
 )
 

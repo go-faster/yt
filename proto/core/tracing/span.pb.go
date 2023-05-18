@@ -11,7 +11,7 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
-	misc "go.ytsaurus.tech/yt/go/proto/core/misc"
+	misc "github.com/go-faster/yt/proto/core/misc"
 )
 
 const (

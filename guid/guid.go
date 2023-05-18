@@ -8,8 +8,8 @@ import (
 	"encoding/hex"
 	"fmt"
 
+	"github.com/go-faster/yt/yson"
 	"github.com/gofrs/uuid"
-	"go.ytsaurus.tech/yt/go/yson"
 	"golang.org/x/xerrors"
 )
 

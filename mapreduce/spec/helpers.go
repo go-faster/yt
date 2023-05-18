@@ -1,6 +1,6 @@
 package spec
 
-import "go.ytsaurus.tech/yt/go/yt"
+import "github.com/go-faster/yt/yt"
 
 // ConfigureJobIOForDynamicTable sets appropriate IO settings for operation
 // that outputs static table that would be later converted to dynamic table.

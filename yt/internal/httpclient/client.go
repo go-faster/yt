@@ -14,15 +14,15 @@ import (
 	"time"
 
 	"github.com/cenkalti/backoff/v4"
+	"github.com/go-faster/yt/yson"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yt/internal"
+	"github.com/go-faster/yt/yterrors"
 	"github.com/opentracing/opentracing-go"
 	"go.ytsaurus.tech/library/go/blockcodecs"
 	_ "go.ytsaurus.tech/library/go/blockcodecs/all"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/ctxlog"
-	"go.ytsaurus.tech/yt/go/yson"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yt/internal"
-	"go.ytsaurus.tech/yt/go/yterrors"
 	"golang.org/x/xerrors"
 )
 

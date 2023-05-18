@@ -1,4 +1,4 @@
-module go.ytsaurus.tech/yt/go
+module github.com/go-faster/yt
 
 go 1.18
 

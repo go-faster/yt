@@ -8,7 +8,7 @@ import (
 	"sort"
 	"strings"
 
-	"go.ytsaurus.tech/yt/go/yson"
+	"github.com/go-faster/yt/yson"
 	"golang.org/x/xerrors"
 )
 
@@ -237,9 +237,7 @@ func Err(args ...interface{}) error {
 	return err
 }
 
-var (
-	_ json.Unmarshaler = (*Error)(nil)
-)
+var _ json.Unmarshaler = (*Error)(nil)
 
 // UnmarshalJSON copies json deserialization logic from C++ code.
 func (yt *Error) UnmarshalJSON(b []byte) error {

@@ -36,11 +36,11 @@ import (
 	"context"
 	"io"
 
-	"go.ytsaurus.tech/yt/go/guid"
-	"go.ytsaurus.tech/yt/go/schema"
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yson"
-	"go.ytsaurus.tech/yt/go/yterrors"
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/schema"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yson"
+	"github.com/go-faster/yt/yterrors"
 )
 
 //go:generate yt-gen-client -interface interface.go -output internal/params.go
@@ -83,8 +83,7 @@ const (
 // ReadRetryOptions is marker for distinguishing requests that might be safely retried.
 //
 // TODO(prime@): rename to SafeRetryOptions
-type ReadRetryOptions struct {
-}
+type ReadRetryOptions struct{}
 
 // MasterReadOptions specify where cypress read requests are routed.
 //
@@ -547,14 +546,11 @@ type SuspendOperationOptions struct {
 	AbortRunningJobs bool `http:"abort_running_jobs"`
 }
 
-type ResumeOperationOptions struct {
-}
+type ResumeOperationOptions struct{}
 
-type CompleteOperationOptions struct {
-}
+type CompleteOperationOptions struct{}
 
-type UpdateOperationParametersOptions struct {
-}
+type UpdateOperationParametersOptions struct{}
 
 type TransferAccountResourcesOptions struct {
 	*MutatingOptions
@@ -626,8 +622,7 @@ type ListJobsResult struct {
 	Jobs []JobStatus `yson:"jobs"`
 }
 
-type GetJobStderrOptions struct {
-}
+type GetJobStderrOptions struct{}
 
 type GetOperationOptions struct {
 	Attributes     []string `http:"attributes,omitnil"`

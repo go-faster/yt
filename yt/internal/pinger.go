@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yterrors"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yterrors"
 )
 
 var (

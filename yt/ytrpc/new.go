@@ -3,9 +3,9 @@ package ytrpc
 import (
 	"testing"
 
-	"go.ytsaurus.tech/yt/go/mapreduce"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yt/internal/rpcclient"
+	"github.com/go-faster/yt/mapreduce"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yt/internal/rpcclient"
 	"golang.org/x/xerrors"
 )
 

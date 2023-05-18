@@ -6,15 +6,15 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/mapreduce"
+	"github.com/go-faster/yt/schema"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yt/ythttp"
+	"github.com/go-faster/yt/yterrors"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/xerrors"
-	"go.ytsaurus.tech/yt/go/guid"
-	"go.ytsaurus.tech/yt/go/mapreduce"
-	"go.ytsaurus.tech/yt/go/schema"
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yt/ythttp"
-	"go.ytsaurus.tech/yt/go/yterrors"
 )
 
 type Env struct {

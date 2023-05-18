@@ -5,11 +5,11 @@ import (
 	"context"
 	"sync"
 
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yson"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yterrors"
 	"go.ytsaurus.tech/library/go/core/xerrors"
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yson"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yterrors"
 )
 
 type WinnerTx struct {

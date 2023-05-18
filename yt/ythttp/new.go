@@ -4,9 +4,9 @@ package ythttp
 import (
 	"testing"
 
-	"go.ytsaurus.tech/yt/go/mapreduce"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yt/internal/httpclient"
+	"github.com/go-faster/yt/mapreduce"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yt/internal/httpclient"
 	"golang.org/x/xerrors"
 )
 

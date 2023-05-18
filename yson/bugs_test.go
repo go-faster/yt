@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"testing"
 
+	"github.com/go-faster/yt/yson"
 	"github.com/gofrs/uuid"
 	"github.com/stretchr/testify/require"
-	"go.ytsaurus.tech/yt/go/yson"
 )
 
 type (

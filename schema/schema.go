@@ -4,8 +4,8 @@ package schema
 import (
 	"reflect"
 
+	"github.com/go-faster/yt/yson"
 	"go.ytsaurus.tech/library/go/ptr"
-	"go.ytsaurus.tech/yt/go/yson"
 )
 
 type Type string
@@ -124,9 +124,7 @@ type Column struct {
 	Group string `yson:"group,omitempty"`
 }
 
-var (
-	_ yson.StreamMarshaler = Column{}
-)
+var _ yson.StreamMarshaler = Column{}
 
 func (c Column) MarshalYSON(w *yson.Writer) error {
 	type column Column

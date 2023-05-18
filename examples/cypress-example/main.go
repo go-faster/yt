@@ -7,15 +7,13 @@ import (
 	"os"
 	"time"
 
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yson"
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yt/ythttp"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yson"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yt/ythttp"
 )
 
-var (
-	flagProxy = flag.String("proxy", "", "cluster address")
-)
+var flagProxy = flag.String("proxy", "", "cluster address")
 
 func Example() error {
 	flag.Parse()

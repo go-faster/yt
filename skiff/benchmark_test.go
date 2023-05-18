@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"testing"
 
+	"github.com/go-faster/yt/schema"
 	"github.com/stretchr/testify/require"
-	"go.ytsaurus.tech/yt/go/schema"
 )
 
 func benchmarkEncode(b *testing.B, value interface{}) {

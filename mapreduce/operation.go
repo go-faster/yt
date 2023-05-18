@@ -5,8 +5,8 @@ import (
 	"regexp"
 	"time"
 
-	"go.ytsaurus.tech/yt/go/yt"
-	"go.ytsaurus.tech/yt/go/yterrors"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yterrors"
 )
 
 type Operation interface {
@@ -26,9 +26,7 @@ func (o *operation) ID() yt.OperationID {
 	return o.opID
 }
 
-var (
-	failedJobLimitExceededRE = regexp.MustCompile("Failed jobs limit exceeded")
-)
+var failedJobLimitExceededRE = regexp.MustCompile("Failed jobs limit exceeded")
 
 func (o *operation) getOperationError(status *yt.OperationStatus) error {
 	innerErr := status.Result.Error

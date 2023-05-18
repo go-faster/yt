@@ -5,11 +5,11 @@ import (
 	"io"
 
 	"github.com/cenkalti/backoff/v4"
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yson"
+	"github.com/go-faster/yt/yt"
 	"go.ytsaurus.tech/library/go/core/log"
-	"go.ytsaurus.tech/yt/go/guid"
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yson"
-	"go.ytsaurus.tech/yt/go/yt"
 )
 
 type Params interface {

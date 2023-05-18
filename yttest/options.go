@@ -1,8 +1,8 @@
 package yttest
 
 import (
+	"github.com/go-faster/yt/yt"
 	"go.ytsaurus.tech/library/go/core/log"
-	"go.ytsaurus.tech/yt/go/yt"
 )
 
 type Option interface {

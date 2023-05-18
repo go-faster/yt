@@ -8,13 +8,13 @@ import (
 	"sync"
 
 	"github.com/cenkalti/backoff/v4"
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/mapreduce/spec"
+	"github.com/go-faster/yt/ypath"
+	"github.com/go-faster/yt/yt"
 	"github.com/google/tink/go/aead"
 	"github.com/google/tink/go/keyset"
 	"github.com/google/tink/go/tink"
-	"go.ytsaurus.tech/yt/go/guid"
-	"go.ytsaurus.tech/yt/go/mapreduce/spec"
-	"go.ytsaurus.tech/yt/go/ypath"
-	"go.ytsaurus.tech/yt/go/yt"
 )
 
 type Client interface {

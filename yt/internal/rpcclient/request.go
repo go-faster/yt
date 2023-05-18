@@ -1,13 +1,15 @@
 package rpcclient
 
 import (
+	"github.com/go-faster/yt/proto/client/api/rpc_proxy"
+	"github.com/go-faster/yt/yt"
 	"go.ytsaurus.tech/library/go/core/log"
-	"go.ytsaurus.tech/yt/go/proto/client/api/rpc_proxy"
-	"go.ytsaurus.tech/yt/go/yt"
 )
 
-var _ TransactionalRequest = (*CreateNodeRequest)(nil)
-var _ MutatingRequest = (*CreateNodeRequest)(nil)
+var (
+	_ TransactionalRequest = (*CreateNodeRequest)(nil)
+	_ MutatingRequest      = (*CreateNodeRequest)(nil)
+)
 
 type CreateNodeRequest struct {
 	*rpc_proxy.TReqCreateNode
@@ -54,8 +56,10 @@ func (r CreateObjectRequest) Path() (string, bool) {
 	return "", false
 }
 
-var _ TransactionalRequest = (*NodeExistsRequest)(nil)
-var _ ReadRetryRequest = (*NodeExistsRequest)(nil)
+var (
+	_ TransactionalRequest = (*NodeExistsRequest)(nil)
+	_ ReadRetryRequest     = (*NodeExistsRequest)(nil)
+)
 
 type NodeExistsRequest struct {
 	*rpc_proxy.TReqExistsNode
@@ -81,8 +85,10 @@ func (r *NodeExistsRequest) SetTxOptions(opts *TransactionOptions) {
 
 func (r *NodeExistsRequest) ReadRetryOptions() {}
 
-var _ TransactionalRequest = (*RemoveNodeRequest)(nil)
-var _ MutatingRequest = (*RemoveNodeRequest)(nil)
+var (
+	_ TransactionalRequest = (*RemoveNodeRequest)(nil)
+	_ MutatingRequest      = (*RemoveNodeRequest)(nil)
+)
 
 type RemoveNodeRequest struct {
 	*rpc_proxy.TReqRemoveNode
@@ -110,8 +116,10 @@ func (r *RemoveNodeRequest) SetMutatingOptions(opts *yt.MutatingOptions) {
 	r.MutatingOptions = convertMutatingOptions(opts)
 }
 
-var _ TransactionalRequest = (*GetNodeRequest)(nil)
-var _ ReadRetryRequest = (*GetNodeRequest)(nil)
+var (
+	_ TransactionalRequest = (*GetNodeRequest)(nil)
+	_ ReadRetryRequest     = (*GetNodeRequest)(nil)
+)
 
 type GetNodeRequest struct {
 	*rpc_proxy.TReqGetNode
@@ -137,8 +145,10 @@ func (r *GetNodeRequest) SetTxOptions(opts *TransactionOptions) {
 
 func (r *GetNodeRequest) ReadRetryOptions() {}
 
-var _ TransactionalRequest = (*SetNodeRequest)(nil)
-var _ MutatingRequest = (*SetNodeRequest)(nil)
+var (
+	_ TransactionalRequest = (*SetNodeRequest)(nil)
+	_ MutatingRequest      = (*SetNodeRequest)(nil)
+)
 
 type SetNodeRequest struct {
 	*rpc_proxy.TReqSetNode
@@ -194,8 +204,10 @@ func (r *MultisetAttributesRequest) SetMutatingOptions(opts *yt.MutatingOptions)
 	r.MutatingOptions = convertMutatingOptions(opts)
 }
 
-var _ TransactionalRequest = (*ListNodeRequest)(nil)
-var _ ReadRetryRequest = (*ListNodeRequest)(nil)
+var (
+	_ TransactionalRequest = (*ListNodeRequest)(nil)
+	_ ReadRetryRequest     = (*ListNodeRequest)(nil)
+)
 
 type ListNodeRequest struct {
 	*rpc_proxy.TReqListNode
@@ -221,8 +233,10 @@ func (r *ListNodeRequest) SetTxOptions(opts *TransactionOptions) {
 
 func (r *ListNodeRequest) ReadRetryOptions() {}
 
-var _ TransactionalRequest = (*CopyNodeRequest)(nil)
-var _ MutatingRequest = (*CopyNodeRequest)(nil)
+var (
+	_ TransactionalRequest = (*CopyNodeRequest)(nil)
+	_ MutatingRequest      = (*CopyNodeRequest)(nil)
+)
 
 type CopyNodeRequest struct {
 	*rpc_proxy.TReqCopyNode
@@ -251,8 +265,10 @@ func (r *CopyNodeRequest) SetMutatingOptions(opts *yt.MutatingOptions) {
 	r.MutatingOptions = convertMutatingOptions(opts)
 }
 
-var _ TransactionalRequest = (*MoveNodeRequest)(nil)
-var _ MutatingRequest = (*MoveNodeRequest)(nil)
+var (
+	_ TransactionalRequest = (*MoveNodeRequest)(nil)
+	_ MutatingRequest      = (*MoveNodeRequest)(nil)
+)
 
 type MoveNodeRequest struct {
 	*rpc_proxy.TReqMoveNode
@@ -281,8 +297,10 @@ func (r *MoveNodeRequest) SetMutatingOptions(opts *yt.MutatingOptions) {
 	r.MutatingOptions = convertMutatingOptions(opts)
 }
 
-var _ TransactionalRequest = (*LinkNodeRequest)(nil)
-var _ MutatingRequest = (*LinkNodeRequest)(nil)
+var (
+	_ TransactionalRequest = (*LinkNodeRequest)(nil)
+	_ MutatingRequest      = (*LinkNodeRequest)(nil)
+)
 
 type LinkNodeRequest struct {
 	*rpc_proxy.TReqLinkNode
@@ -311,8 +329,10 @@ func (r *LinkNodeRequest) SetMutatingOptions(opts *yt.MutatingOptions) {
 	r.MutatingOptions = convertMutatingOptions(opts)
 }
 
-var _ TransactionalRequest = (*StartTxRequest)(nil)
-var _ ReadRetryRequest = (*StartTxRequest)(nil)
+var (
+	_ TransactionalRequest = (*StartTxRequest)(nil)
+	_ ReadRetryRequest     = (*StartTxRequest)(nil)
+)
 
 type StartTxRequest struct {
 	*rpc_proxy.TReqStartTransaction
@@ -552,8 +572,10 @@ func (r *ReadTableRequest) SetTxOptions(opts *TransactionOptions) {
 	r.TransactionalOptions = convertTransactionOptions(opts.TransactionOptions)
 }
 
-var _ TransactionalRequest = (*StartOperationRequest)(nil)
-var _ MutatingRequest = (*StartOperationRequest)(nil)
+var (
+	_ TransactionalRequest = (*StartOperationRequest)(nil)
+	_ MutatingRequest      = (*StartOperationRequest)(nil)
+)
 
 type StartOperationRequest struct {
 	*rpc_proxy.TReqStartOperation
@@ -862,8 +884,10 @@ func (r *TransferPoolResourcesRequest) SetMutatingOptions(opts *yt.MutatingOptio
 	r.MutatingOptions = convertMutatingOptions(opts)
 }
 
-var _ ReadRetryRequest = (*CheckPermissionRequest)(nil)
-var _ TransactionalRequest = (*CheckPermissionRequest)(nil)
+var (
+	_ ReadRetryRequest     = (*CheckPermissionRequest)(nil)
+	_ TransactionalRequest = (*CheckPermissionRequest)(nil)
+)
 
 type CheckPermissionRequest struct {
 	*rpc_proxy.TReqCheckPermission
@@ -948,8 +972,10 @@ func (r ResurrectChunkLocationsRequest) Path() (string, bool) {
 	return "", false
 }
 
-var _ TransactionalRequest = (*LockNodeRequest)(nil)
-var _ MutatingRequest = (*LockNodeRequest)(nil)
+var (
+	_ TransactionalRequest = (*LockNodeRequest)(nil)
+	_ MutatingRequest      = (*LockNodeRequest)(nil)
+)
 
 type LockNodeRequest struct {
 	*rpc_proxy.TReqLockNode
@@ -978,8 +1004,10 @@ func (r *LockNodeRequest) SetMutatingOptions(opts *yt.MutatingOptions) {
 	r.MutatingOptions = convertMutatingOptions(opts)
 }
 
-var _ TransactionalRequest = (*UnlockNodeRequest)(nil)
-var _ MutatingRequest = (*UnlockNodeRequest)(nil)
+var (
+	_ TransactionalRequest = (*UnlockNodeRequest)(nil)
+	_ MutatingRequest      = (*UnlockNodeRequest)(nil)
+)
 
 type UnlockNodeRequest struct {
 	*rpc_proxy.TReqUnlockNode
