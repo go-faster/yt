@@ -54,7 +54,6 @@ func NewReader(
 
 type smartReader struct {
 	ctx        context.Context
-	yc         yt.Client
 	tx         yt.Tx
 	txOwned    bool
 	l          log.Structured

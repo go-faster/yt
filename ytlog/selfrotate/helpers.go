@@ -105,13 +105,13 @@ func listLogs(name string) ([]logFile, error) {
 
 	var logs []logFile
 	for _, f := range files {
-		if logFile, ok := parseFilename(f.Name(), pattern); ok {
+		if logfile, ok := parseFilename(f.Name(), pattern); ok {
 			info, err := f.Info()
 			if err != nil {
 				return nil, err
 			}
-			logFile.Size = info.Size()
-			logs = append(logs, logFile)
+			logfile.Size = info.Size()
+			logs = append(logs, logfile)
 		}
 	}
 
