@@ -3,11 +3,10 @@ package yt
 import (
 	"bytes"
 	"context"
-	"errors"
 
+	"github.com/go-faster/errors"
 	"github.com/go-faster/yt/ypath"
 	"github.com/go-faster/yt/yson"
-	"golang.org/x/xerrors"
 )
 
 var defaultBatchSize = 512 * 1024 * 1024
@@ -180,7 +179,7 @@ func WriteTable(ctx context.Context, yc Client, path ypath.Path, opts ...WriteTa
 
 	var ok bool
 	if w.rawWriter, ok = yc.(rawTableWriter); !ok {
-		return nil, xerrors.Errorf("yt: client %T is not compatible with yt.WriteTable", yc)
+		return nil, errors.Errorf("yt: client %T is not compatible with yt.WriteTable", yc)
 	}
 
 	var err error

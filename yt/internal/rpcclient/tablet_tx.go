@@ -3,12 +3,13 @@ package rpcclient
 import (
 	"context"
 
+	"github.com/golang/protobuf/proto"
+	"go.ytsaurus.tech/library/go/core/xerrors"
+
 	"github.com/go-faster/yt/bus"
 	"github.com/go-faster/yt/yson"
 	"github.com/go-faster/yt/yt"
 	"github.com/go-faster/yt/yt/internal"
-	"github.com/golang/protobuf/proto"
-	"go.ytsaurus.tech/library/go/core/xerrors"
 )
 
 type TransactionOptions struct {

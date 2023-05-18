@@ -5,8 +5,9 @@ import (
 	"io"
 	"reflect"
 
+	"github.com/go-faster/errors"
+
 	"github.com/go-faster/yt/yson"
-	"golang.org/x/xerrors"
 )
 
 type Encoder struct {
@@ -181,7 +182,7 @@ func (e *Encoder) writeAny(v interface{}, opt bool) error {
 
 func (e *Encoder) WriteRow(cols []interface{}) error {
 	if e.schema == nil || len(cols) != len(e.schema.Children) {
-		return xerrors.Errorf("skiff: can't encode row, col count mismatch, expected %v actual %v", len(e.schema.Children), len(cols))
+		return errors.Errorf("skiff: can't encode row, col count mismatch, expected %v actual %v", len(e.schema.Children), len(cols))
 	}
 	if err := e.startRow(); err != nil {
 		return err
@@ -229,7 +230,7 @@ func (e *Encoder) WriteRow(cols []interface{}) error {
 					e.w.writeInt64(0)
 				}
 			default:
-				return xerrors.Errorf("skiff: can't encode field %v: type mismatch %v", e.schema.Children[i].Name, wt)
+				return errors.Errorf("skiff: can't encode field %v: type mismatch %v", e.schema.Children[i].Name, wt)
 			}
 		case TypeUint64:
 			switch vv := v.(type) {
@@ -268,7 +269,7 @@ func (e *Encoder) WriteRow(cols []interface{}) error {
 					e.w.writeUint64(0)
 				}
 			default:
-				return xerrors.Errorf("skiff: can't encode field %v: type mismatch %v", e.schema.Children[i].Name, wt)
+				return errors.Errorf("skiff: can't encode field %v: type mismatch %v", e.schema.Children[i].Name, wt)
 			}
 		case TypeDouble:
 			switch vv := v.(type) {
@@ -287,7 +288,7 @@ func (e *Encoder) WriteRow(cols []interface{}) error {
 					e.w.writeDouble(0)
 				}
 			default:
-				return xerrors.Errorf("skiff: can't encode field %v: type mismatch %v", e.schema.Children[i].Name, wt)
+				return errors.Errorf("skiff: can't encode field %v: type mismatch %v", e.schema.Children[i].Name, wt)
 			}
 		case TypeBoolean:
 			switch vv := v.(type) {
@@ -302,7 +303,7 @@ func (e *Encoder) WriteRow(cols []interface{}) error {
 					e.w.writeByte(0)
 				}
 			default:
-				return xerrors.Errorf("skiff: can't encode field %v: type mismatch %v", e.schema.Children[i].Name, wt)
+				return errors.Errorf("skiff: can't encode field %v: type mismatch %v", e.schema.Children[i].Name, wt)
 			}
 		case TypeString32:
 			switch vv := v.(type) {
@@ -321,7 +322,7 @@ func (e *Encoder) WriteRow(cols []interface{}) error {
 					e.w.writeUint32(0)
 				}
 			default:
-				return xerrors.Errorf("skiff: can't encode field %v: type mismatch %v", e.schema.Children[i].Name, wt)
+				return errors.Errorf("skiff: can't encode field %v: type mismatch %v", e.schema.Children[i].Name, wt)
 			}
 		case TypeYSON32:
 			if err := e.writeAny(v, isOpt); err != nil {
@@ -347,7 +348,7 @@ func (e *Encoder) encodeMap(ops []fieldOp, value reflect.Value) error {
 			}
 
 			if err := checkTypes(f.Type(), op.wt); err != nil {
-				return xerrors.Errorf("skiff: can't encode field %q: %w", key, err)
+				return errors.Wrapf(err, "skiff: can't encode field %q", key)
 			}
 
 			switch op.wt {
@@ -424,7 +425,7 @@ func (e *Encoder) Write(value interface{}) error {
 
 	case reflect.Map:
 		if typ.Key().Kind() != reflect.String {
-			return xerrors.Errorf("skiff: type %v is not supported", typ)
+			return errors.Errorf("skiff: type %v is not supported", typ)
 		}
 
 		ops, err := e.getTranscoder(emptyStructType)
@@ -434,7 +435,7 @@ func (e *Encoder) Write(value interface{}) error {
 		return e.encodeMap(ops, v)
 
 	default:
-		return xerrors.Errorf("skiff: type %v is not supported", typ)
+		return errors.Errorf("skiff: type %v is not supported", typ)
 	}
 }
 

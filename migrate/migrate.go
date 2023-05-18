@@ -5,11 +5,12 @@ import (
 	"context"
 	"time"
 
+	"go.ytsaurus.tech/library/go/core/xerrors"
+
 	"github.com/go-faster/yt/schema"
 	"github.com/go-faster/yt/ypath"
 	"github.com/go-faster/yt/yt"
 	"github.com/go-faster/yt/yterrors"
-	"go.ytsaurus.tech/library/go/core/xerrors"
 )
 
 type retrySentinel struct{}

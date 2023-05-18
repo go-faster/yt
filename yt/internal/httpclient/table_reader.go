@@ -5,11 +5,12 @@ import (
 	"io"
 	"reflect"
 
+	"github.com/go-faster/errors"
+
 	"github.com/go-faster/yt/ypath"
 	"github.com/go-faster/yt/yson"
 	"github.com/go-faster/yt/yt"
 	"github.com/go-faster/yt/yt/internal/smartreader"
-	"golang.org/x/xerrors"
 )
 
 type tableReader struct {
@@ -28,10 +29,10 @@ func (r *tableReader) Scan(value interface{}) error {
 		return r.err
 	}
 	if !r.started {
-		return xerrors.New("call to Scan() before calling Next()")
+		return errors.New("call to Scan() before calling Next()")
 	}
 	if r.end {
-		return xerrors.New("call to Scan() after EOF")
+		return errors.New("call to Scan() after EOF")
 	}
 
 	zeroInitialize(value)

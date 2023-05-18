@@ -7,10 +7,11 @@ import (
 	"testing"
 
 	"github.com/cenkalti/backoff/v4"
+	"github.com/go-faster/errors"
+	"github.com/stretchr/testify/assert"
+
 	"github.com/go-faster/yt/ypath"
 	"github.com/go-faster/yt/yt"
-	"github.com/stretchr/testify/assert"
-	"golang.org/x/xerrors"
 )
 
 type netError struct {
@@ -61,7 +62,7 @@ func TestReadRetrierRetriesGet(t *testing.T) {
 	_, err := r.Intercept(context.Background(), call, func(context.Context, *Call) (*CallResult, error) {
 		if !failed {
 			failed = true
-			return &CallResult{}, xerrors.Errorf("request failed: %w", &netError{timeout: true})
+			return &CallResult{}, errors.Wrap(&netError{timeout: true}, "request failed")
 		}
 
 		return &CallResult{}, nil
@@ -80,7 +81,7 @@ func TestReadRetrierIgnoresMutations(t *testing.T) {
 	}
 
 	_, err := r.Intercept(context.Background(), call, func(context.Context, *Call) (*CallResult, error) {
-		return &CallResult{}, xerrors.New("request failed")
+		return &CallResult{}, errors.New("request failed")
 	})
 
 	assert.Error(t, err)

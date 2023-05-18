@@ -4,13 +4,14 @@ import (
 	"context"
 	"io"
 
+	"go.ytsaurus.tech/library/go/core/xerrors"
+	"go.ytsaurus.tech/library/go/ptr"
+
 	"github.com/go-faster/yt/guid"
 	"github.com/go-faster/yt/proto/client/api/rpc_proxy"
 	"github.com/go-faster/yt/ypath"
 	"github.com/go-faster/yt/yson"
 	"github.com/go-faster/yt/yt"
-	"go.ytsaurus.tech/library/go/core/xerrors"
-	"go.ytsaurus.tech/library/go/ptr"
 )
 
 // Encoder is adapter between typed and untyped layer of API.

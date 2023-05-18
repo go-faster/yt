@@ -8,17 +8,18 @@ import (
 	"sync"
 	"time"
 
-	"github.com/go-faster/yt/compression"
-	"github.com/go-faster/yt/guid"
-	"github.com/go-faster/yt/proto/core/misc"
-	"github.com/go-faster/yt/proto/core/rpc"
-	"github.com/go-faster/yt/yterrors"
 	"github.com/golang/protobuf/proto"
 	"go.uber.org/atomic"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/nop"
 	"go.ytsaurus.tech/library/go/core/xerrors"
 	"go.ytsaurus.tech/library/go/ptr"
+
+	"github.com/go-faster/yt/compression"
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/proto/core/misc"
+	"github.com/go-faster/yt/proto/core/rpc"
+	"github.com/go-faster/yt/yterrors"
 )
 
 const (

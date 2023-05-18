@@ -6,8 +6,9 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/go-faster/errors"
+
 	"github.com/go-faster/yt/yson"
-	"golang.org/x/xerrors"
 )
 
 func isHex(b byte) bool {
@@ -62,7 +63,7 @@ func stateMaybeAttrs(l *lexer) stateFn {
 	var n int
 	n, l.err = yson.SliceYPathAttrs(l.input)
 	if l.err != nil {
-		l.err = xerrors.Errorf("ypath: invalid attribute syntax: %v", l.err)
+		l.err = errors.Errorf("ypath: invalid attribute syntax: %v", l.err)
 		return nil
 	}
 
@@ -250,7 +251,7 @@ func stateRanges(l *lexer) stateFn {
 
 			rowIndex, err := strconv.ParseInt(string(l.input[start:end]), 10, 64)
 			if err != nil {
-				l.err = xerrors.Errorf("ypath: invalid row index: %v", err)
+				l.err = errors.Errorf("ypath: invalid row index: %v", err)
 			}
 
 			i = end
@@ -275,7 +276,7 @@ func stateRanges(l *lexer) stateFn {
 				var value interface{}
 				n, err := yson.SliceYPathValue(l.input[i:], &value)
 				if err != nil {
-					l.err = xerrors.Errorf("ypath: invalid key: %v", err)
+					l.err = errors.Errorf("ypath: invalid key: %v", err)
 					return nil
 				}
 
@@ -300,7 +301,7 @@ func stateRanges(l *lexer) stateFn {
 			var value interface{}
 			n, err := yson.SliceYPathValue(l.input[i:], &value)
 			if err != nil {
-				l.err = xerrors.Errorf("ypath: invalid key: %v", err)
+				l.err = errors.Errorf("ypath: invalid key: %v", err)
 				return nil
 			}
 
@@ -431,7 +432,7 @@ func Parse(path string) (p *Rich, err error) {
 	}
 
 	if len(l.tokens) == 0 {
-		err = xerrors.New("ypath: empty path")
+		err = errors.New("ypath: empty path")
 		return
 	}
 
@@ -443,7 +444,7 @@ func Parse(path string) (p *Rich, err error) {
 		attrs := l.attrs
 		attrs = append(attrs, '"', '"')
 		if err = yson.Unmarshal(attrs, p); err != nil {
-			err = xerrors.Errorf("ypath: invalid attribute syntax: %v", err)
+			err = errors.Errorf("ypath: invalid attribute syntax: %v", err)
 			return
 		}
 	}

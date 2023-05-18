@@ -1,9 +1,10 @@
 package rpcclient
 
 import (
+	"go.ytsaurus.tech/library/go/core/log"
+
 	"github.com/go-faster/yt/proto/client/api/rpc_proxy"
 	"github.com/go-faster/yt/yt"
-	"go.ytsaurus.tech/library/go/core/log"
 )
 
 var (

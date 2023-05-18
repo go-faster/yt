@@ -5,8 +5,9 @@ import (
 	"reflect"
 	"sort"
 
+	"github.com/go-faster/errors"
+
 	"github.com/go-faster/yt/yson"
-	"golang.org/x/xerrors"
 )
 
 var (
@@ -71,7 +72,7 @@ func ytTypeFor(typ reflect.Type) (ytTyp Type, err error) {
 		return TypeAny, nil
 	}
 
-	return "", xerrors.Errorf("type %v has no associated YT type", typ)
+	return "", errors.Errorf("type %v has no associated YT type", typ)
 }
 
 const (
@@ -152,7 +153,7 @@ func Infer(value interface{}) (s Schema, err error) {
 		}
 
 		if typ.Kind() != reflect.Struct {
-			return xerrors.Errorf("can't infer schema from type %v", v.Type())
+			return errors.Errorf("can't infer schema from type %v", v.Type())
 		}
 
 		for i := 0; i < typ.NumField(); i++ {
@@ -206,7 +207,7 @@ func InferMap(value interface{}) (s Schema, err error) {
 	for iter.Next() {
 		k := iter.Key()
 		if k.Kind() != reflect.String {
-			err = xerrors.Errorf("can't infer schema from map with key of type %v, only string is supported", k.Type())
+			err = errors.Errorf("can't infer schema from map with key of type %v, only string is supported", k.Type())
 			return
 		}
 
@@ -254,7 +255,7 @@ func MustInferMap(value interface{}) (s Schema) {
 func reflectValueOfType(value interface{}, k reflect.Kind) (v reflect.Value, err error) {
 	// Check for nil, reflect of nil value causes panic.
 	if value == nil {
-		err = xerrors.New("can't infer schema from nil value")
+		err = errors.New("can't infer schema from nil value")
 		return
 	}
 
@@ -264,7 +265,7 @@ func reflectValueOfType(value interface{}, k reflect.Kind) (v reflect.Value, err
 	}
 
 	if v.Kind() != k {
-		err = xerrors.Errorf("can't infer schema from value of type %v", v.Type())
+		err = errors.Errorf("can't infer schema from value of type %v", v.Type())
 	}
 	return
 }

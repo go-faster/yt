@@ -4,8 +4,9 @@ import (
 	"net"
 	"testing"
 
-	"github.com/go-faster/yt/guid"
 	"github.com/stretchr/testify/require"
+
+	"github.com/go-faster/yt/guid"
 )
 
 func connPair() (a, b net.Conn, err error) {

@@ -8,9 +8,10 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"github.com/go-faster/yt/yson"
+	"github.com/go-faster/errors"
 	"github.com/gofrs/uuid"
-	"golang.org/x/xerrors"
+
+	"github.com/go-faster/yt/yson"
 )
 
 // GUID is 16-byte value.
@@ -70,11 +71,11 @@ func ParseString(s string) (g GUID, err error) {
 	var n int
 	n, err = fmt.Sscanf(s, format, &d, &c, &b, &a)
 	if err != nil {
-		err = xerrors.Errorf("invalid GUID format: %v", err)
+		err = errors.Errorf("invalid GUID format: %v", err)
 		return
 	}
 	if n != 4 {
-		err = xerrors.Errorf("invalid GUID format")
+		err = errors.Errorf("invalid GUID format")
 		return
 	}
 

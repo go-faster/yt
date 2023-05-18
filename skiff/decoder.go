@@ -9,8 +9,9 @@ import (
 	"io"
 	"reflect"
 
+	"github.com/go-faster/errors"
+
 	"github.com/go-faster/yt/yson"
-	"golang.org/x/xerrors"
 )
 
 type opCache map[reflect.Type][]fieldOp
@@ -46,7 +47,7 @@ func NewDecoder(r io.Reader, format Format) (*Decoder, error) {
 		switch v := s.(type) {
 		case string:
 			if len(v) == 0 || v[0] != '$' {
-				return nil, xerrors.Errorf("skiff: invalid schema key %q", v)
+				return nil, errors.Errorf("skiff: invalid schema key %q", v)
 			}
 
 			d.schemas[i] = format.SchemaRegistry[v[1:]]
@@ -93,7 +94,7 @@ func (d *Decoder) Next() bool {
 	}
 
 	if d.tableIndex >= len(d.schemas) {
-		d.r.err = xerrors.Errorf("skiff: table index %d >= %d", d.tableIndex, len(d.schemas))
+		d.r.err = errors.Errorf("skiff: table index %d >= %d", d.tableIndex, len(d.schemas))
 		return false
 	}
 
@@ -300,7 +301,7 @@ func (d *Decoder) decodeMap(ops []fieldOp, value interface{}) error {
 		} else {
 			field := reflect.New(mapValueType).Elem()
 			if err := checkTypes(mapValueType, op.wt); err != nil {
-				return xerrors.Errorf("skiff: can't decode field %q: %w", op.schemaName, err)
+				return errors.Wrapf(err, "skiff: can't decode field %q", op.schemaName)
 			}
 
 			switch op.wt {
@@ -378,7 +379,7 @@ func (d *Decoder) Scan(value interface{}) (err error) {
 
 	typ := reflect.TypeOf(value)
 	if typ.Kind() != reflect.Ptr {
-		return xerrors.Errorf("skiff: type %v is not a pointer", typ)
+		return errors.Errorf("skiff: type %v is not a pointer", typ)
 	}
 	typ = typ.Elem()
 
@@ -414,7 +415,7 @@ func (d *Decoder) Scan(value interface{}) (err error) {
 		}
 
 	default:
-		return xerrors.Errorf("skiff: type %v is not a struct", typ)
+		return errors.Errorf("skiff: type %v is not a struct", typ)
 	}
 
 	d.valueRead = true

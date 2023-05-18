@@ -4,10 +4,11 @@ package ythttp
 import (
 	"testing"
 
+	"github.com/go-faster/errors"
+
 	"github.com/go-faster/yt/mapreduce"
 	"github.com/go-faster/yt/yt"
 	"github.com/go-faster/yt/yt/internal/httpclient"
-	"golang.org/x/xerrors"
 )
 
 func checkNotInsideJob(c *yt.Config) error {
@@ -16,7 +17,7 @@ func checkNotInsideJob(c *yt.Config) error {
 	}
 
 	if mapreduce.InsideJob() {
-		return xerrors.New("requests to cluster from inside job are forbidden")
+		return errors.New("requests to cluster from inside job are forbidden")
 	}
 
 	return nil

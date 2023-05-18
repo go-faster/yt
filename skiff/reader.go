@@ -5,7 +5,7 @@ import (
 	"io"
 	"math"
 
-	"golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 const (
@@ -71,7 +71,7 @@ func (r *reader) backup() {
 func (r *reader) readBytes() []byte {
 	size := int(r.readUint32())
 	if size > stringSizeLimit {
-		r.err = xerrors.Errorf("skiff: blob size is too large %d > %d", size, stringSizeLimit)
+		r.err = errors.Errorf("skiff: blob size is too large %d > %d", size, stringSizeLimit)
 		return nil
 	}
 

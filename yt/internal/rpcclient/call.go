@@ -4,12 +4,13 @@ import (
 	"context"
 
 	"github.com/cenkalti/backoff/v4"
+	"github.com/golang/protobuf/proto"
+	"go.ytsaurus.tech/library/go/core/log"
+
 	"github.com/go-faster/yt/bus"
 	"github.com/go-faster/yt/guid"
 	"github.com/go-faster/yt/proto/client/api/rpc_proxy"
 	"github.com/go-faster/yt/yt"
-	"github.com/golang/protobuf/proto"
-	"go.ytsaurus.tech/library/go/core/log"
 )
 
 type Call struct {

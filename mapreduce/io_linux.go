@@ -8,9 +8,10 @@ import (
 	"os"
 	"syscall"
 
+	"github.com/go-faster/errors"
+
 	"github.com/go-faster/yt/skiff"
 	"github.com/go-faster/yt/yson"
-	"golang.org/x/xerrors"
 )
 
 type skiffReader struct {
@@ -44,7 +45,7 @@ func (c *jobContext) initPipes(state *jobState, nOutputPipes int) error {
 		fd := uintptr(3*i + 1)
 		_, _, errno := syscall.Syscall(syscall.SYS_FCNTL, fd, syscall.F_GETFD, 0)
 		if errno != 0 {
-			return xerrors.Errorf("output pipe #%d is missing: %w", i, errno)
+			return errors.Wrapf(errno, "output pipe #%d is missing", i)
 		}
 
 		if i == 0 {

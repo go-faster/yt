@@ -3,7 +3,7 @@ package yson
 import (
 	"reflect"
 
-	"golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 // InferAttrs infers attribute names from struct.
@@ -12,7 +12,7 @@ import (
 // including exported fields of yson-untagged anonymous fields
 func InferAttrs(v interface{}) ([]string, error) {
 	if v == nil {
-		return nil, xerrors.New("can't infer attrs from nil value")
+		return nil, errors.New("can't infer attrs from nil value")
 	}
 
 	uv := reflect.ValueOf(v)
@@ -21,7 +21,7 @@ func InferAttrs(v interface{}) ([]string, error) {
 	}
 
 	if uv.Kind() != reflect.Struct {
-		return nil, xerrors.Errorf("can't infer attrs from value of type %v", uv.Type())
+		return nil, errors.Errorf("can't infer attrs from value of type %v", uv.Type())
 	}
 
 	var attrs []string

@@ -3,10 +3,11 @@ package rpcclient
 import (
 	"reflect"
 
-	"github.com/go-faster/yt/proto/client/api/rpc_proxy"
-	"github.com/go-faster/yt/wire"
 	"go.ytsaurus.tech/library/go/core/xerrors"
 	"go.ytsaurus.tech/library/go/ptr"
+
+	"github.com/go-faster/yt/proto/client/api/rpc_proxy"
+	"github.com/go-faster/yt/wire"
 )
 
 const CurrentWireFormatVersion = 1

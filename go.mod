@@ -6,6 +6,7 @@ require (
 	github.com/andybalholm/brotli v1.0.4
 	github.com/cenkalti/backoff/v4 v4.1.3
 	github.com/davecgh/go-spew v1.1.1
+	github.com/go-faster/errors v0.6.1
 	github.com/gofrs/uuid v4.2.0+incompatible
 	github.com/golang/protobuf v1.5.2
 	github.com/golang/snappy v0.0.4
@@ -25,7 +26,6 @@ require (
 	go.ytsaurus.tech/library/go/core/xerrors v0.0.2
 	go.ytsaurus.tech/library/go/ptr v0.0.1
 	golang.org/x/sync v0.1.0
-	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2
 	google.golang.org/protobuf v1.28.1
 )
 
