@@ -1,0 +1,14 @@
+/vendor
+/bug_test.go
+/coverage.txt
+/.idea
+.idea
+_bin/*
+
+*-fuzz.zip
+
+*.out
+*.dump
+*.test
+
+corpus
