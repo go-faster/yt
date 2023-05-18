@@ -14,7 +14,7 @@ import (
 	"github.com/go-faster/yt/yt"
 	"github.com/go-faster/yt/yt/internal"
 	"github.com/golang/protobuf/proto"
-	"github.com/opentracing/opentracing-go"
+	"go.opentelemetry.io/otel/trace"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/ctxlog"
 	"go.ytsaurus.tech/library/go/core/xerrors"
@@ -31,7 +31,7 @@ type client struct {
 	token          string
 
 	log    log.Structured
-	tracer opentracing.Tracer
+	tracer trace.Tracer
 
 	// httpClient is used to retrieve available proxies.
 	httpClient *http.Client
@@ -47,7 +47,7 @@ func NewClient(conf *yt.Config) (*client, error) {
 		httpClusterURL: yt.NormalizeProxyURL(conf.Proxy, conf.UseTVMOnlyEndpoint, yt.TVMOnlyHTTPProxyPort),
 		rpcClusterURL:  yt.NormalizeProxyURL(conf.RPCProxy, conf.UseTVMOnlyEndpoint, yt.TVMOnlyRPCProxyPort),
 		log:            conf.GetLogger(),
-		tracer:         conf.GetTracer(),
+		tracer:         conf.GetTracer("yt.rpcclient"),
 		stop:           internal.NewStopGroup(),
 	}
 

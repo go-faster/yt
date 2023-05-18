@@ -10,7 +10,8 @@ import (
 	"time"
 
 	"github.com/go-faster/yt/guid"
-	"github.com/opentracing/opentracing-go"
+	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/trace"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/nop"
 	zaplog "go.ytsaurus.tech/library/go/core/log/zap"
@@ -83,12 +84,12 @@ type Config struct {
 	// WARNING: Running YT client in production without debug logs is highly discouraged.
 	Logger log.Structured
 
-	// Tracer overrides default tracer, used by the client
+	// TracerProvider overrides default tracer provider, used by the client
 	//
-	// When Tracer is not set opentracing.GlobalTracer is used.
+	// When Tracer is not set trace.GetTracerProvider is used.
 	//
-	// If opentracing.GlobalTracer is not set, no tracing is performed.
-	Tracer opentracing.Tracer
+	// If default tracer provider is not set, no tracing is performed.
+	TracerProvider trace.TracerProvider
 
 	// TraceFn extracts trace parent from request context.
 	//
@@ -198,12 +199,13 @@ func (c *Config) GetLogger() log.Structured {
 	return l.Structured()
 }
 
-func (c *Config) GetTracer() opentracing.Tracer {
-	if c.Tracer != nil {
-		return c.Tracer
+func (c *Config) GetTracer(name string) trace.Tracer {
+	pt := c.TracerProvider
+	if pt == nil {
+		pt = otel.GetTracerProvider()
 	}
-
-	return opentracing.GlobalTracer()
+	// TODO(tdakkota): pass some instrumentation options?
+	return pt.Tracer(name)
 }
 
 func (c *Config) GetLightRequestTimeout() time.Duration {

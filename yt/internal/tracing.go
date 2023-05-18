@@ -6,13 +6,13 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/opentracing/opentracing-go"
-	"github.com/opentracing/opentracing-go/ext"
+	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/atomic"
 )
 
 type tracingReader struct {
-	span      opentracing.Span
+	span      trace.Span
 	t         *TracingInterceptor
 	r         io.ReadCloser
 	call      *Call
@@ -23,7 +23,7 @@ type tracingReader struct {
 
 func (r *tracingReader) traceFinish(err error) {
 	if !r.logged.Swap(true) {
-		r.t.traceFinish(r.span, err, opentracing.Tag{Key: "bytes_read", Value: r.byteCount})
+		r.t.traceFinish(r.span, err, attribute.Int64("bytes_read", r.byteCount))
 	}
 }
 
@@ -49,7 +49,7 @@ func (r *tracingReader) Read(p []byte) (n int, err error) {
 }
 
 type tracingWriter struct {
-	span      opentracing.Span
+	span      trace.Span
 	t         *TracingInterceptor
 	w         io.WriteCloser
 	call      *Call
@@ -60,7 +60,7 @@ type tracingWriter struct {
 
 func (w *tracingWriter) traceFinish(err error) {
 	if !w.logged.Swap(true) {
-		w.t.traceFinish(w.span, err, opentracing.Tag{Key: "bytes_written", Value: w.byteCount})
+		w.t.traceFinish(w.span, err, attribute.Int64("bytes_written", w.byteCount))
 	}
 }
 
@@ -82,29 +82,33 @@ func (w *tracingWriter) Close() error {
 }
 
 type TracingInterceptor struct {
-	opentracing.Tracer
+	trace.Tracer
 }
 
-func (t *TracingInterceptor) traceStart(ctx context.Context, call *Call) (span opentracing.Span, retCtx context.Context) {
-	span, retCtx = opentracing.StartSpanFromContextWithTracer(ctx, t.Tracer, string(call.Params.HTTPVerb()), ext.SpanKindRPCClient)
-	ext.Component.Set(span, "yt")
-	span.SetTag("call_id", call.CallID.String())
-	for _, field := range call.Params.Log() {
+func (t *TracingInterceptor) traceStart(ctx context.Context, call *Call) (span trace.Span, retCtx context.Context) {
+	log := call.Params.Log()
+
+	attrs := make([]attribute.KeyValue, 0, len(log)+1)
+	attrs = append(attrs, attribute.Stringer("call_id", call.CallID))
+	for _, field := range log {
 		if value, ok := field.Any().(fmt.Stringer); ok {
-			span.SetTag(field.Key(), value.String())
+			attrs = append(attrs, attribute.Stringer(field.Key(), value))
 		}
 	}
+
+	retCtx, span = t.Tracer.Start(ctx, string(call.Params.HTTPVerb()),
+		trace.WithSpanKind(trace.SpanKindClient),
+		trace.WithAttributes(attrs...),
+	)
 	return
 }
 
-func (t *TracingInterceptor) traceFinish(span opentracing.Span, err error, tags ...opentracing.Tag) {
+func (t *TracingInterceptor) traceFinish(span trace.Span, err error, attrs ...attribute.KeyValue) {
+	// TODO(tdakkota): handle attrs?
 	if err != nil {
-		ext.LogError(span, err)
+		span.RecordError(err)
 	}
-	for _, tag := range tags {
-		span.SetTag(tag.Key, tag.Value)
-	}
-	span.Finish()
+	span.End()
 }
 
 func (t *TracingInterceptor) Intercept(ctx context.Context, call *Call, invoke CallInvoker) (res *CallResult, err error) {

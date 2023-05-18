@@ -18,7 +18,7 @@ import (
 	"github.com/go-faster/yt/yt"
 	"github.com/go-faster/yt/yt/internal"
 	"github.com/go-faster/yt/yterrors"
-	"github.com/opentracing/opentracing-go"
+	"go.opentelemetry.io/otel/trace"
 	"go.ytsaurus.tech/library/go/blockcodecs"
 	_ "go.ytsaurus.tech/library/go/blockcodecs/all"
 	"go.ytsaurus.tech/library/go/core/log"
@@ -52,7 +52,7 @@ type httpClient struct {
 	netDialer  *net.Dialer
 	httpClient *http.Client
 	log        log.Structured
-	tracer     opentracing.Tracer
+	tracer     trace.Tracer
 	config     *yt.Config
 	stop       *internal.StopGroup
 
@@ -650,7 +650,7 @@ func NewHTTPClient(c *yt.Config) (yt.Client, error) {
 	var client httpClient
 
 	client.log = c.GetLogger()
-	client.tracer = c.GetTracer()
+	client.tracer = c.GetTracer("yt.httpclient")
 
 	proxy, err := c.GetProxy()
 	if err != nil {

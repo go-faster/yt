@@ -6,31 +6,37 @@ import (
 
 	"github.com/go-faster/yt/bus"
 	"github.com/golang/protobuf/proto"
-	"github.com/opentracing/opentracing-go"
-	"github.com/opentracing/opentracing-go/ext"
+	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/trace"
 )
 
 type TracingInterceptor struct {
-	opentracing.Tracer
+	trace.Tracer
 }
 
-func (t *TracingInterceptor) traceStart(ctx context.Context, call *Call) (span opentracing.Span, retCtx context.Context) {
-	span, retCtx = opentracing.StartSpanFromContextWithTracer(ctx, t.Tracer, string(call.Method), ext.SpanKindRPCClient)
-	ext.Component.Set(span, "yt")
-	span.SetTag("call_id", call.CallID.String())
-	for _, field := range call.Req.Log() {
+func (t *TracingInterceptor) traceStart(ctx context.Context, call *Call) (span trace.Span, retCtx context.Context) {
+	log := call.Req.Log()
+
+	attrs := make([]attribute.KeyValue, 0, len(log)+1)
+	attrs = append(attrs, attribute.Stringer("call_id", call.CallID))
+	for _, field := range log {
 		if value, ok := field.Any().(fmt.Stringer); ok {
-			span.SetTag(field.Key(), value.String())
+			attrs = append(attrs, attribute.Stringer(field.Key(), value))
 		}
 	}
+
+	retCtx, span = t.Tracer.Start(ctx, string(call.Method),
+		trace.WithSpanKind(trace.SpanKindClient),
+		trace.WithAttributes(attrs...),
+	)
 	return
 }
 
-func (t *TracingInterceptor) traceFinish(span opentracing.Span, err error) {
+func (t *TracingInterceptor) traceFinish(span trace.Span, err error) {
 	if err != nil {
-		ext.LogError(span, err)
+		span.RecordError(err)
 	}
-	span.Finish()
+	span.End()
 }
 
 func (t *TracingInterceptor) Intercept(ctx context.Context, call *Call, invoke CallInvoker, rsp proto.Message, opts ...bus.SendOption) (err error) {
