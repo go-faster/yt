@@ -11,7 +11,7 @@ require (
 	github.com/golang/protobuf v1.5.2
 	github.com/golang/snappy v0.0.4
 	github.com/google/tink/go v1.6.0
-	github.com/klauspost/compress v1.15.12
+	github.com/klauspost/compress v1.16.5
 	github.com/mitchellh/copystructure v1.2.0
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/pierrec/lz4 v2.6.1+incompatible
