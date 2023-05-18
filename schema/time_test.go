@@ -8,14 +8,14 @@ import (
 )
 
 func TestTimeConversion(t *testing.T) {
-	maxTime, err := time.Parse(time.RFC3339Nano, "2105-12-31T23:59:59.999999Z")
+	biggerThanMaxTime, err := time.Parse(time.RFC3339Nano, "2105-12-31T23:59:59.999999Z")
 	require.NoError(t, err)
 
 	t.Run("Date", func(t *testing.T) {
 		var d Date = 49673 - 1
 		require.Equal(t, "2105-12-31T00:00:00Z", d.Time().Format(time.RFC3339Nano))
 
-		d, err := NewDate(maxTime)
+		d, err := NewDate(biggerThanMaxTime)
 		require.NoError(t, err)
 		require.Equal(t, "2105-12-31T00:00:00Z", d.Time().Format(time.RFC3339Nano))
 	})
@@ -24,7 +24,7 @@ func TestTimeConversion(t *testing.T) {
 		var d Datetime = 49673*86400 - 1
 		require.Equal(t, "2105-12-31T23:59:59Z", d.Time().Format(time.RFC3339Nano))
 
-		d, err = NewDatetime(maxTime)
+		d, err = NewDatetime(biggerThanMaxTime)
 		require.NoError(t, err)
 		require.Equal(t, "2105-12-31T23:59:59Z", d.Time().Format(time.RFC3339Nano))
 	})
@@ -33,7 +33,7 @@ func TestTimeConversion(t *testing.T) {
 		var d Timestamp = 49673*86400*1000000 - 1
 		require.Equal(t, "2105-12-31T23:59:59.999999Z", d.Time().Format(time.RFC3339Nano))
 
-		d, err = NewTimestamp(maxTime)
+		d, err = NewTimestamp(biggerThanMaxTime)
 		require.NoError(t, err)
 		require.Equal(t, "2105-12-31T23:59:59.999999Z", d.Time().Format(time.RFC3339Nano))
 	})

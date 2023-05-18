@@ -22,8 +22,7 @@ type connPool struct {
 	mu    sync.Mutex
 	conns map[string]*conn
 
-	stop    chan struct{}
-	stopped bool
+	stop chan struct{}
 
 	IdleConnTimeout time.Duration
 
