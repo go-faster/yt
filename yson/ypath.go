@@ -3,7 +3,7 @@ package yson
 import (
 	"fmt"
 
-	"golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 // SliceYPathAttrs splits ypath into attributes and path.
@@ -29,7 +29,7 @@ func SliceYPathAttrs(ypath []byte) (n int, err error) {
 		op := s.step(&s, ypath[i])
 		switch op {
 		case scanError:
-			err = xerrors.New("ypath: invalid format")
+			err = errors.New("ypath: invalid format")
 			return
 
 		case scanBeginAttrs:
@@ -44,7 +44,7 @@ func SliceYPathAttrs(ypath []byte) (n int, err error) {
 
 		default:
 			if depth == 0 {
-				err = xerrors.New("ypath: invalid format")
+				err = errors.New("ypath: invalid format")
 				return
 			}
 
@@ -54,7 +54,7 @@ func SliceYPathAttrs(ypath []byte) (n int, err error) {
 		}
 	}
 
-	err = xerrors.New("ypath: invalid format")
+	err = errors.New("ypath: invalid format")
 	return
 }
 
@@ -68,7 +68,7 @@ func SliceYPathString(ypath []byte, str *[]byte) (n int, err error) {
 	if s, ok := value.([]byte); ok {
 		*str = s
 	} else {
-		err = xerrors.New("ypath: type")
+		err = errors.New("ypath: type")
 	}
 
 	return
@@ -109,7 +109,7 @@ func SliceYPathValue(ypath []byte, value *interface{}) (n int, err error) {
 			case TypeString:
 				*value = r.currentString
 			default:
-				err = xerrors.New("ypath: invalid format")
+				err = errors.New("ypath: invalid format")
 			}
 
 			n = i
@@ -117,11 +117,11 @@ func SliceYPathValue(ypath []byte, value *interface{}) (n int, err error) {
 
 		case scanSkipSpace, scanContinue:
 		default:
-			err = xerrors.New("ypath: invalid format")
+			err = errors.New("ypath: invalid format")
 			return
 		}
 	}
 
-	err = xerrors.New("ypath: invalid format")
+	err = errors.New("ypath: invalid format")
 	return
 }

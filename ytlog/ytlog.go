@@ -1,11 +1,12 @@
 package ytlog
 
 import (
-	"github.com/go-faster/yt/ytlog/selfrotate"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	logzap "go.ytsaurus.tech/library/go/core/log/zap"
 	"go.ytsaurus.tech/library/go/core/log/zap/asynczap"
+
+	"github.com/go-faster/yt/ytlog/selfrotate"
 )
 
 // New returns synchronous stderr logger configured with YT defaults.

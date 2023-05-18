@@ -8,14 +8,15 @@ import (
 	"strconv"
 
 	"github.com/cenkalti/backoff/v4"
+	"github.com/go-faster/errors"
+	"github.com/google/tink/go/keyset"
+
 	"github.com/go-faster/yt/guid"
 	"github.com/go-faster/yt/mapreduce/spec"
 	"github.com/go-faster/yt/schema"
 	"github.com/go-faster/yt/ypath"
 	"github.com/go-faster/yt/yt"
 	"github.com/go-faster/yt/yterrors"
-	"github.com/google/tink/go/keyset"
-	"golang.org/x/xerrors"
 )
 
 type prepareAction func(ctx context.Context, p *prepare) error
@@ -165,13 +166,13 @@ func (p *prepare) prepare(opts []OperationOption) error {
 
 			err := cypress.GetNode(p.ctx, inputTablePath.YPath().Attrs(), &tableAttrs, nil)
 			if yterrors.ContainsResolveError(err) {
-				return xerrors.Errorf("mr: input table %v is missing: %w", inputTablePath.YPath(), err)
+				return errors.Wrapf(err, "mr: input table %v is missing", inputTablePath.YPath())
 			} else if err != nil {
 				return err
 			}
 
 			if tableAttrs.Typ != yt.NodeTable {
-				return xerrors.Errorf("mr: input %q is not a table: type=%v", inputTablePath.YPath(), tableAttrs.Typ)
+				return errors.Errorf("mr: input %q is not a table: type=%v", inputTablePath.YPath(), tableAttrs.Typ)
 			}
 		}
 	}

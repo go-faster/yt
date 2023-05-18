@@ -4,10 +4,11 @@
 package spec
 
 import (
+	"github.com/mitchellh/copystructure"
+
 	"github.com/go-faster/yt/ypath"
 	"github.com/go-faster/yt/yson"
 	"github.com/go-faster/yt/yt"
-	"github.com/mitchellh/copystructure"
 )
 
 type File struct {

@@ -3,9 +3,10 @@ package ytjaeger
 import (
 	"context"
 
-	"github.com/go-faster/yt/guid"
 	"github.com/opentracing/opentracing-go"
 	"github.com/uber/jaeger-client-go"
+
+	"github.com/go-faster/yt/guid"
 )
 
 func TraceFn(ctx context.Context) (traceID guid.GUID, spanID uint64, flags byte, ok bool) {

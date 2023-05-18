@@ -9,13 +9,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/errors"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/trace"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/nop"
 	zaplog "go.ytsaurus.tech/library/go/core/log/zap"
-	"golang.org/x/xerrors"
+
+	"github.com/go-faster/yt/guid"
 )
 
 type Config struct {
@@ -145,7 +146,7 @@ func (c *Config) GetProxy() (string, error) {
 		return proxy, nil
 	}
 
-	return "", xerrors.New("YT proxy is not set (either Config.Proxy or YT_PROXY must be set)")
+	return "", errors.New("YT proxy is not set (either Config.Proxy or YT_PROXY must be set)")
 }
 
 func (c *Config) GetToken() string {

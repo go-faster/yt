@@ -4,10 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/go-faster/yt/bus"
 	"github.com/golang/protobuf/proto"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/trace"
+
+	"github.com/go-faster/yt/bus"
 )
 
 type TracingInterceptor struct {

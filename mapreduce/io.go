@@ -5,8 +5,9 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/go-faster/errors"
+
 	"github.com/go-faster/yt/yson"
-	"golang.org/x/xerrors"
 )
 
 type jobContext struct {
@@ -32,14 +33,14 @@ func (c *jobContext) initEnv() error {
 	vaultValue := os.Getenv("YT_SECURE_VAULT")
 	if vaultValue != "" {
 		if err := yson.Unmarshal([]byte(vaultValue), &c.vault); err != nil {
-			return xerrors.Errorf("corrupted secure vault: %w", err)
+			return errors.Wrap(err, "corrupted secure vault")
 		}
 	}
 
 	jobCookie := os.Getenv("YT_JOB_COOKIE")
 	if jobCookie != "" {
 		if cookie, err := strconv.Atoi(jobCookie); err != nil {
-			return xerrors.Errorf("corrupted job cookie: %w", err)
+			return errors.Wrap(err, "corrupted job cookie")
 		} else {
 			c.jobCookie = cookie
 		}
@@ -63,7 +64,7 @@ func (c *jobContext) finish() error {
 		_ = out.Close()
 
 		if out.err != nil {
-			return xerrors.Errorf("output writer error: %w", out.err)
+			return errors.Wrap(out.err, "output writer error")
 		}
 	}
 

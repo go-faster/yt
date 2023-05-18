@@ -7,9 +7,10 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/go-faster/errors"
+
 	"github.com/go-faster/yt/mapreduce/spec"
 	"github.com/go-faster/yt/yt"
-	"golang.org/x/xerrors"
 )
 
 func jobCommand(job Job, outputPipes int) string {
@@ -106,7 +107,7 @@ func (mr *client) Vanilla(s *spec.Spec, jobs map[string]Job, opts ...OperationOp
 	for name, job := range jobs {
 		us, ok := p.spec.Tasks[name]
 		if !ok {
-			return nil, xerrors.Errorf("yt: task %q is not specified in spec.tasks", name)
+			return nil, errors.Errorf("yt: task %q is not specified in spec.tasks", name)
 		}
 
 		state := new(jobState)

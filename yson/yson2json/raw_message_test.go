@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/go-faster/yt/yson"
 	"github.com/stretchr/testify/require"
+
+	"github.com/go-faster/yt/yson"
 )
 
 func TestRawMessage_MarshalYSON(t *testing.T) {

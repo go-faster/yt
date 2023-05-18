@@ -4,12 +4,13 @@ import (
 	"context"
 	"io"
 
+	"github.com/go-faster/errors"
+	"go.ytsaurus.tech/library/go/core/log"
+
 	"github.com/go-faster/yt/ypath"
 	"github.com/go-faster/yt/yson"
 	"github.com/go-faster/yt/yt"
 	"github.com/go-faster/yt/yt/internal/smartreader"
-	"go.ytsaurus.tech/library/go/core/log"
-	"golang.org/x/xerrors"
 )
 
 type TxInterceptor struct {
@@ -59,7 +60,7 @@ func NewTx(
 
 	if !stop.TryAdd() {
 		// In this rare event, leave tx running on the master.
-		return nil, xerrors.New("client is stopped")
+		return nil, errors.New("client is stopped")
 	}
 
 	go tx.pinger.Run()
@@ -111,7 +112,7 @@ func (t *TxInterceptor) setTx(call *Call) error {
 
 	params, ok := call.Params.(TransactionParams)
 	if !ok {
-		return xerrors.Errorf("call %s is not transactional", call.Params.HTTPVerb())
+		return errors.Errorf("call %s is not transactional", call.Params.HTTPVerb())
 	}
 
 	txOpts := params.TransactionOptions()

@@ -6,9 +6,9 @@ import (
 	"math"
 	"testing"
 
+	"github.com/go-faster/errors"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"golang.org/x/xerrors"
 )
 
 func TestNewError(t *testing.T) {
@@ -43,7 +43,7 @@ func TestContainsCode(t *testing.T) {
 	require.True(t, ContainsErrorCode(err2, 101))
 	require.True(t, ContainsErrorCode(err2, 102))
 
-	err3 := xerrors.Errorf("HTTP error: %w", Err(ErrorCode(101)))
+	err3 := errors.Errorf("HTTP error: %w", Err(ErrorCode(101)))
 	require.True(t, ContainsErrorCode(err3, 101))
 }
 

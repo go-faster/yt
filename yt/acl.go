@@ -1,6 +1,6 @@
 package yt
 
-import "golang.org/x/xerrors"
+import "github.com/go-faster/errors"
 
 // TODO(dakovalkov): create a different type for Permission
 type Permission = string
@@ -60,7 +60,7 @@ func ConvertPermissionType(typ *Permission) (*int32, error) {
 	case PermissionModifyChildren:
 		ret = 0x1000
 	default:
-		return nil, xerrors.Errorf("unexpected permission type %q", *typ)
+		return nil, errors.Errorf("unexpected permission type %q", *typ)
 	}
 
 	return &ret, nil

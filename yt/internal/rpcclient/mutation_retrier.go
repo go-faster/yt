@@ -6,13 +6,14 @@ import (
 	"time"
 
 	"github.com/cenkalti/backoff/v4"
-	"github.com/go-faster/yt/bus"
-	"github.com/go-faster/yt/guid"
-	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/errors"
 	"github.com/golang/protobuf/proto"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/ctxlog"
-	"golang.org/x/xerrors"
+
+	"github.com/go-faster/yt/bus"
+	"github.com/go-faster/yt/guid"
+	"github.com/go-faster/yt/yt"
 )
 
 type MutationRetrier struct {
@@ -72,5 +73,5 @@ func (r *MutationRetrier) Intercept(ctx context.Context, call *Call, invoke Call
 
 func isNetError(err error) bool {
 	var netErr net.Error
-	return xerrors.As(err, &netErr)
+	return errors.As(err, &netErr)
 }

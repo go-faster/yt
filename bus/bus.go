@@ -9,10 +9,11 @@ import (
 	"net"
 	"sync"
 
-	"github.com/go-faster/yt/crc64"
-	"github.com/go-faster/yt/guid"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/nop"
+
+	"github.com/go-faster/yt/crc64"
+	"github.com/go-faster/yt/guid"
 )
 
 type AttributeKey string

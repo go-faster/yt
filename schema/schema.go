@@ -4,8 +4,9 @@ package schema
 import (
 	"reflect"
 
-	"github.com/go-faster/yt/yson"
 	"go.ytsaurus.tech/library/go/ptr"
+
+	"github.com/go-faster/yt/yson"
 )
 
 type Type string

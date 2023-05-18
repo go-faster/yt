@@ -5,7 +5,6 @@ import (
 	"context"
 	"crypto/tls"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"net"
@@ -14,16 +13,17 @@ import (
 	"time"
 
 	"github.com/cenkalti/backoff/v4"
-	"github.com/go-faster/yt/yson"
-	"github.com/go-faster/yt/yt"
-	"github.com/go-faster/yt/yt/internal"
-	"github.com/go-faster/yt/yterrors"
 	"go.opentelemetry.io/otel/trace"
 	"go.ytsaurus.tech/library/go/blockcodecs"
 	_ "go.ytsaurus.tech/library/go/blockcodecs/all"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/ctxlog"
-	"golang.org/x/xerrors"
+
+	"github.com/go-faster/errors"
+	"github.com/go-faster/yt/yson"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yt/internal"
+	"github.com/go-faster/yt/yterrors"
 )
 
 func decodeYTErrorFromHeaders(h http.Header) (ytErr *yterrors.Error, err error) {
@@ -34,7 +34,7 @@ func decodeYTErrorFromHeaders(h http.Header) (ytErr *yterrors.Error, err error) 
 
 	ytErr = &yterrors.Error{}
 	if decodeErr := json.Unmarshal([]byte(header), ytErr); decodeErr != nil {
-		err = xerrors.Errorf("yt: malformed 'X-YT-Error' header: %w", decodeErr)
+		err = errors.Wrap(decodeErr, "yt: malformed 'X-YT-Error' header")
 	}
 
 	return
@@ -115,7 +115,7 @@ func (c *httpClient) listHeavyProxies() ([]string, error) {
 	}
 
 	if len(proxies) == 0 {
-		return nil, xerrors.New("proxy list is empty")
+		return nil, errors.New("proxy list is empty")
 	}
 
 	if c.config.UseTVMOnlyEndpoint {
@@ -274,7 +274,7 @@ func unexpectedStatusCode(rsp *http.Response) error {
 		return &ytErr
 	}
 
-	return xerrors.Errorf("unexpected status code %d", rsp.StatusCode)
+	return errors.Errorf("unexpected status code %d", rsp.StatusCode)
 }
 
 func (c *httpClient) readResult(rsp *http.Response) (res *internal.CallResult, err error) {
@@ -525,7 +525,7 @@ func (c *httpClient) doReadRow(ctx context.Context, call *internal.Call) (r yt.T
 
 	if rspParams != nil {
 		if err := tr.setRspParams(rspParams); err != nil {
-			return nil, xerrors.Errorf("invalid rsp params: %w", err)
+			return nil, errors.Wrap(err, "invalid rsp params")
 		}
 	}
 

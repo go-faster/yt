@@ -5,6 +5,9 @@ import (
 	"net/http"
 	"time"
 
+	"go.ytsaurus.tech/library/go/core/xerrors"
+	"go.ytsaurus.tech/library/go/ptr"
+
 	"github.com/go-faster/yt/guid"
 	"github.com/go-faster/yt/proto/client/api/rpc_proxy"
 	"github.com/go-faster/yt/proto/core/misc"
@@ -12,8 +15,6 @@ import (
 	"github.com/go-faster/yt/yson"
 	"github.com/go-faster/yt/yt"
 	"github.com/go-faster/yt/yterrors"
-	"go.ytsaurus.tech/library/go/ptr"
-	"golang.org/x/xerrors"
 )
 
 // unexpectedStatusCode is last effort attempt to get useful error message from a failed request.

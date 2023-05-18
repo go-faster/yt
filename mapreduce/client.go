@@ -8,13 +8,14 @@ import (
 	"sync"
 
 	"github.com/cenkalti/backoff/v4"
+	"github.com/google/tink/go/aead"
+	"github.com/google/tink/go/keyset"
+	"github.com/google/tink/go/tink"
+
 	"github.com/go-faster/yt/guid"
 	"github.com/go-faster/yt/mapreduce/spec"
 	"github.com/go-faster/yt/ypath"
 	"github.com/go-faster/yt/yt"
-	"github.com/google/tink/go/aead"
-	"github.com/google/tink/go/keyset"
-	"github.com/google/tink/go/tink"
 )
 
 type Client interface {

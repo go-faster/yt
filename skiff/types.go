@@ -3,8 +3,9 @@ package skiff
 import (
 	"reflect"
 
+	"github.com/go-faster/errors"
+
 	"github.com/go-faster/yt/yson"
-	"golang.org/x/xerrors"
 )
 
 var (
@@ -27,7 +28,7 @@ type fieldOp struct {
 func unpackSimpleVariant(schema *Schema) (wt WireType, optional bool, err error) {
 	if schema.Type == TypeVariant8 {
 		if len(schema.Children) != 2 || schema.Children[0].Type != TypeNothing || !schema.Children[1].Type.IsSimple() {
-			err = xerrors.Errorf("unsupported skiff type %v", schema)
+			err = errors.Errorf("unsupported skiff type %v", schema)
 			return
 		}
 
@@ -36,7 +37,7 @@ func unpackSimpleVariant(schema *Schema) (wt WireType, optional bool, err error)
 		return
 	} else {
 		if len(schema.Children) != 0 || !schema.Type.IsSimple() {
-			err = xerrors.Errorf("unsupported skiff type %v", schema)
+			err = errors.Errorf("unsupported skiff type %v", schema)
 			return
 		}
 
@@ -88,7 +89,7 @@ func checkTypes(typ reflect.Type, wt WireType) error {
 		}
 	}
 
-	return xerrors.Errorf("type %v is not compatible with wire type %s", typ, wt)
+	return errors.Errorf("type %v is not compatible with wire type %s", typ, wt)
 }
 
 // skiff encoding and decoding is always driven by the schema. newTranscoder generates
@@ -97,11 +98,11 @@ func newTranscoder(schema *Schema, typ reflect.Type) ([]fieldOp, error) {
 	var fields []fieldOp
 
 	if schema.Type != TypeTuple {
-		return nil, xerrors.Errorf("skiff: invalid root type %v", schema.Type)
+		return nil, errors.Errorf("skiff: invalid root type %v", schema.Type)
 	}
 
 	if typ.Kind() != reflect.Struct {
-		return nil, xerrors.Errorf("skiff: type %v is not supported at root", typ)
+		return nil, errors.Errorf("skiff: type %v is not supported at root", typ)
 	}
 
 	fieldByName := map[string]reflect.StructField{}
@@ -122,14 +123,14 @@ func newTranscoder(schema *Schema, typ reflect.Type) ([]fieldOp, error) {
 		op.schemaName = topValue.Name
 		op.wt, op.optional, err = unpackSimpleVariant(&topValue)
 		if err != nil {
-			return nil, xerrors.Errorf("skiff: invalid schema for column %q: %w", topValue.Name, err)
+			return nil, errors.Wrapf(err, "skiff: invalid schema for column %q", topValue.Name)
 		}
 
 		field, ok := fieldByName[topValue.Name]
 		if ok {
 			tag, _ := yson.ParseTag(field.Name, field.Tag)
 			if err := checkTypes(field.Type, op.wt); err != nil {
-				return nil, xerrors.Errorf("skiff: invalid schema for column %q: %w", topValue.Name, err)
+				return nil, errors.Wrapf(err, "skiff: invalid schema for column %q", topValue.Name)
 			}
 
 			op.index = field.Index

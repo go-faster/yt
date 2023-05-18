@@ -8,8 +8,9 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/go-faster/errors"
+
 	"github.com/go-faster/yt/yson"
-	"golang.org/x/xerrors"
 )
 
 //go:generate yt-gen-error-code -yt-root ../../yt -out error_code.go
@@ -65,7 +66,7 @@ func FindErrorCode(err error, code ErrorCode) *Error {
 	}
 
 	var ytErr *Error
-	if ok := xerrors.As(err, &ytErr); ok {
+	if ok := errors.As(err, &ytErr); ok {
 		if code == ytErr.Code {
 			return ytErr
 		}
@@ -89,7 +90,7 @@ func ContainsMessageRE(err error, messageRE *regexp.Regexp) bool {
 	}
 
 	var ytErr *Error
-	if ok := xerrors.As(err, &ytErr); !ok {
+	if ok := errors.As(err, &ytErr); !ok {
 		return false
 	}
 
@@ -132,9 +133,9 @@ func (yt *Error) Error() string {
 	return fmt.Sprint(yt)
 }
 
-func (yt *Error) Format(s fmt.State, v rune) { xerrors.FormatError(yt, s, v) }
+func (yt *Error) Format(s fmt.State, v rune) { errors.FormatError(yt, s, v) }
 
-func (yt *Error) FormatError(p xerrors.Printer) (next error) {
+func (yt *Error) FormatError(p errors.Printer) (next error) {
 	p.Printf("%s", uncapitalize(yt.Message))
 
 	printAttrs := func(e *Error) {

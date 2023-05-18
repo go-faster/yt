@@ -7,12 +7,13 @@ import (
 	"time"
 
 	"github.com/cenkalti/backoff/v4"
-	"github.com/go-faster/yt/bus"
-	"github.com/go-faster/yt/yt"
-	"github.com/go-faster/yt/yterrors"
 	"github.com/golang/protobuf/proto"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/ctxlog"
+
+	"github.com/go-faster/yt/bus"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yterrors"
 )
 
 type Retrier struct {

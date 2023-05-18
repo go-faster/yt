@@ -4,8 +4,9 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/go-faster/yt/proto/core/rpc"
 	"github.com/golang/protobuf/proto"
+
+	"github.com/go-faster/yt/proto/core/rpc"
 )
 
 const (

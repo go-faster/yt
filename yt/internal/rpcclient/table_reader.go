@@ -3,10 +3,11 @@ package rpcclient
 import (
 	"reflect"
 
+	"go.ytsaurus.tech/library/go/core/xerrors"
+
 	"github.com/go-faster/yt/proto/client/api/rpc_proxy"
 	"github.com/go-faster/yt/wire"
 	"github.com/go-faster/yt/yt"
-	"go.ytsaurus.tech/library/go/core/xerrors"
 )
 
 var _ yt.TableReader = (*tableReader)(nil)

@@ -4,6 +4,7 @@ package internal
 
 import (
 	"go.ytsaurus.tech/library/go/core/log"
+
 	"github.com/go-faster/yt/guid"
 	"github.com/go-faster/yt/ypath"
 	"github.com/go-faster/yt/yson"
@@ -2525,7 +2526,7 @@ func (p *RemoveMemberParams) PrerequisiteOptions() **yt.PrerequisiteOptions {
 }
 
 type BuildMasterSnapshotsParams struct {
-	verb Verb
+	verb    Verb
 	options *yt.BuildMasterSnapshotsOptions
 }
 
@@ -2541,7 +2542,7 @@ func NewBuildMasterSnapshotsParams(
 	}
 }
 
-func (p* BuildMasterSnapshotsParams) HTTPVerb() Verb {
+func (p *BuildMasterSnapshotsParams) HTTPVerb() Verb {
 	return p.verb
 }
 
@@ -2556,7 +2557,6 @@ func (p *BuildMasterSnapshotsParams) Log() []log.Field {
 func (p *BuildMasterSnapshotsParams) MarshalHTTP(w *yson.Writer) {
 	writeBuildMasterSnapshots(w, p.options)
 }
-
 
 type DisableChunkLocationsParams struct {
 	verb          Verb

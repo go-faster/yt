@@ -2,17 +2,17 @@ package internal
 
 import (
 	"context"
-	"errors"
 	"io"
 	"net"
 	"time"
 
 	"github.com/cenkalti/backoff/v4"
-	"github.com/go-faster/yt/yt"
-	"github.com/go-faster/yt/yterrors"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/ctxlog"
-	"golang.org/x/xerrors"
+
+	"github.com/go-faster/errors"
+	"github.com/go-faster/yt/yt"
+	"github.com/go-faster/yt/yterrors"
 )
 
 type Retrier struct {
@@ -32,7 +32,7 @@ const (
 
 func isNetError(err error) bool {
 	var netErr net.Error
-	return xerrors.As(err, &netErr)
+	return errors.As(err, &netErr)
 }
 
 func (r *Retrier) shouldRetry(isRead bool, err error) bool {

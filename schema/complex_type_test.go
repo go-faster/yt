@@ -3,8 +3,9 @@ package schema
 import (
 	"testing"
 
-	"github.com/go-faster/yt/yson"
 	"github.com/stretchr/testify/require"
+
+	"github.com/go-faster/yt/yson"
 )
 
 func TestComplexType(t *testing.T) {
