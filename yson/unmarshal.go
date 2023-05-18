@@ -27,11 +27,12 @@ package yson
 
 import (
 	"encoding"
-	"errors"
 	"math"
 	"reflect"
 	"strconv"
 	"time"
+
+	"github.com/go-faster/errors"
 )
 
 // Unmarshaler is an interface implemented by types that can unmarshal themselves from YSON.

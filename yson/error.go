@@ -1,9 +1,10 @@
 package yson
 
 import (
-	"errors"
 	"fmt"
 	"reflect"
+
+	"github.com/go-faster/errors"
 )
 
 var ErrInvalidNesting = errors.New("invalid YSON nesting")

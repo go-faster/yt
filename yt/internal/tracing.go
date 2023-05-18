@@ -2,10 +2,10 @@ package internal
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"io"
 
+	"github.com/go-faster/errors"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/atomic"

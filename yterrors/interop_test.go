@@ -2,11 +2,11 @@ package yterrors
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"os"
 	"testing"
 
+	"github.com/go-faster/errors"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -2,11 +2,11 @@ package internal
 
 import (
 	"context"
-	"errors"
 	"sort"
 	"testing"
 	"time"
 
+	"github.com/go-faster/errors"
 	"github.com/stretchr/testify/require"
 )
 

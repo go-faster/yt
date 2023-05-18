@@ -3,12 +3,12 @@ package bus
 import (
 	"context"
 	"encoding/binary"
-	"errors"
 	"fmt"
 	"io"
 	"net"
 	"sync"
 
+	"github.com/go-faster/errors"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/nop"
 

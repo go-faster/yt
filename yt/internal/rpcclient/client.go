@@ -3,11 +3,11 @@ package rpcclient
 import (
 	"context"
 	"crypto/tls"
-	"errors"
 	"net/http"
 	"time"
 
 	"github.com/cenkalti/backoff/v4"
+	"github.com/go-faster/errors"
 	"github.com/golang/protobuf/proto"
 	"go.opentelemetry.io/otel/trace"
 	"go.ytsaurus.tech/library/go/core/log"

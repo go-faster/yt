@@ -2,9 +2,9 @@ package mapreduce
 
 import (
 	"bytes"
-	"errors"
 	"os"
 
+	"github.com/go-faster/errors"
 	"github.com/google/tink/go/aead"
 	"github.com/google/tink/go/keyset"
 )

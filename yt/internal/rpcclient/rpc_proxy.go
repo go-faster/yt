@@ -3,13 +3,13 @@ package rpcclient
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"net"
 	"net/http"
 	"net/url"
 	"strings"
 
+	"github.com/go-faster/errors"
 	"github.com/golang/protobuf/proto"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/xerrors"

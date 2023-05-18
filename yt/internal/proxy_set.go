@@ -2,13 +2,13 @@ package internal
 
 import (
 	"context"
-	"errors"
 	"io"
 	"math/rand"
 	"net"
 	"sync"
 	"time"
 
+	"github.com/go-faster/errors"
 	"go.ytsaurus.tech/library/go/core/log"
 )
 

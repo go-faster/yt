@@ -3,9 +3,10 @@ package ytwalk
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"reflect"
+
+	"github.com/go-faster/errors"
 
 	"github.com/go-faster/yt/ypath"
 	"github.com/go-faster/yt/yson"

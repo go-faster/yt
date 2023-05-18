@@ -3,9 +3,9 @@ package yson2json
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"strconv"
 
+	"github.com/go-faster/errors"
 	"github.com/go-faster/yt/yson"
 )
 

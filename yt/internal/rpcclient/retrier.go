@@ -2,11 +2,11 @@ package rpcclient
 
 import (
 	"context"
-	"errors"
 	"net"
 	"time"
 
 	"github.com/cenkalti/backoff/v4"
+	"github.com/go-faster/errors"
 	"github.com/golang/protobuf/proto"
 	"go.ytsaurus.tech/library/go/core/log"
 	"go.ytsaurus.tech/library/go/core/log/ctxlog"

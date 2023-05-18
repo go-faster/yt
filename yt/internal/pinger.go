@@ -2,10 +2,10 @@ package internal
 
 import (
 	"context"
-	"errors"
 	"sync"
 	"time"
 
+	"github.com/go-faster/errors"
 	"github.com/go-faster/yt/yt"
 	"github.com/go-faster/yt/yterrors"
 )

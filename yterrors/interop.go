@@ -1,9 +1,10 @@
 package yterrors
 
 import (
-	"errors"
 	"strings"
 	"unicode"
+
+	"github.com/go-faster/errors"
 )
 
 // Converter is interface that might be implemented by error type that wish to implement custom conversion to *Error.

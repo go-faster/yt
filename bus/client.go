@@ -3,11 +3,11 @@ package bus
 import (
 	"context"
 	"encoding/binary"
-	"errors"
 	"fmt"
 	"sync"
 	"time"
 
+	"github.com/go-faster/errors"
 	"github.com/golang/protobuf/proto"
 	"go.uber.org/atomic"
 	"go.ytsaurus.tech/library/go/core/log"
